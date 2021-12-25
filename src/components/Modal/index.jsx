@@ -4,11 +4,14 @@ import style from './modal.module.css';
 import { Header } from '../index';
 const Modal = props => {
   return (
-    <>
-      <div className={style.container}>
-        <Header></Header>
-      </div>
-    </>
+    <div className={style.container}>
+      <Header></Header>
+      <section className={style.contents}>
+        <h1>Login</h1>
+        <button>Google</button>
+        <button>GitHub</button>
+      </section>
+    </div>
   );
 };
 
