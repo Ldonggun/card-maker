@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './modal.module.css';
 // components
-import { Header } from '../index';
+import { Header, Footer } from '../index';
 const Modal = props => {
   return (
     <div className={style.container}>
@@ -11,6 +11,7 @@ const Modal = props => {
         <button>Google</button>
         <button>GitHub</button>
       </section>
+      <Footer></Footer>
     </div>
   );
 };

@@ -2,9 +2,9 @@ import React from 'react';
 import style from './footer.module.css';
 const Footer = props => {
   return (
-    <>
-      <div>dddd</div>
-    </>
+    <div className={style.container}>
+      <p className={style.text}>Code your dream</p>
+    </div>
   );
 };
 
