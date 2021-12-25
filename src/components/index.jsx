@@ -1,3 +1,4 @@
 import Modal from './Modal';
 import Header from './Header';
-export { Modal, Header };
+import Footer from './Footer';
+export { Modal, Header, Footer };
