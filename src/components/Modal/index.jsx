@@ -2,7 +2,7 @@ import React from 'react';
 import style from './modal.module.css';
 // components
 import { Header, Footer } from '../index';
-const Modal = props => {
+const Modal = () => {
   return (
     <div className={style.container}>
       <Header></Header>

@@ -1,11 +1,11 @@
 import React from 'react';
 import './app.css';
 //components
-import { Modal } from './components/index';
+import { Modal, Home } from './components/index';
 function App() {
   return (
     <>
-      <Modal></Modal>
+      <Home></Home>
     </>
   );
 }
