@@ -1,5 +1,4 @@
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
 import {
   getAuth,
   signInWithPopup,
@@ -8,17 +7,12 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBWYzufkuoixjS-Pnui5txXyZASjNm_z3o',
-  authDomain: 'card-maker-a4005.firebaseapp.com',
-  projectId: 'card-maker-a4005',
-  storageBucket: 'card-maker-a4005.appspot.com',
-  messagingSenderId: '437360725122',
-  appId: '1:437360725122:web:4d90b36185900beebe789b',
-  measurementId: 'G-GVBZSHTN6P',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 const apiKey = firebaseConfig.apiKey;
 const googleProvider = new GoogleAuthProvider();
