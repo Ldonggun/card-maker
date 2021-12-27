@@ -1,5 +1,5 @@
 import React from 'react';
-import './app.module.css';
+import style from './app.module.css';
 //router
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import { Login } from './components/index';
 import { Maker } from './pages/index';
 function App({ authService }) {
   return (
-    <>
+    <div className={style.wrap}>
       <BrowserRouter>
         <Switch>
           <Route
@@ -22,7 +22,7 @@ function App({ authService }) {
           </Route>
         </Switch>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

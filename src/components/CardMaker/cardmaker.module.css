@@ -1,10 +1,14 @@
 .cardMaker {
-  width: 50%;
-  height: 100vh;
-  border-left: 1px soild gray;
+  flex-basis: 50%;
+  height: 100%;
 }
 
 .title {
   font-size: 36px;
   text-align: center;
+}
+@media screen and (max-width: 1280px) {
+  .cardMaker {
+    width: 100%;
+  }
 }

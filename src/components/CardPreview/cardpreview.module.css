@@ -1,10 +1,16 @@
 .cardPreview {
-  width: 50%;
-  height: 100vh;
+  flex-basis: 50%;
+  height: 100%;
   border-left: 3px solid #f1f1f1;
 }
 
 .title {
   font-size: 36px;
   text-align: center;
+}
+
+@media screen and (max-width: 1280px) {
+  .cardPreview {
+    width: 100%;
+  }
 }
