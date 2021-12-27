@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './login.module.css';
 import { useHistory } from 'react-router-dom';
 // components
 import { Header, Footer } from '../index';
 
-const Modal = ({ authService }) => {
+const Login = ({ authService }) => {
   const history = useHistory();
+  const goToMakerPage = userId => {
+    history.push({
+      pathname: '/maker',
+      state: { id: userId },
+    });
+  };
   const Login = e => {
     authService //
       .login(e.currentTarget.textContent)
-      .then(history.push('/maker'));
+      .then(data => goToMakerPage(data.user.uid));
   };
+
+  useEffect(() => {
+    authService.onAuthChange(user => {
+      user && goToMakerPage(user.uid);
+    });
+  });
 
   return (
     <>
@@ -29,4 +41,4 @@ const Modal = ({ authService }) => {
   );
 };
 
-export default Modal;
+export default Login;

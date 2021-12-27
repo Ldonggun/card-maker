@@ -16,6 +16,8 @@ class AuthService {
     return signInWithPopup(auth, authProvider);
   }
 
+  logout() {}
+
   onAuthChange(onUserChanged) {}
 }
 

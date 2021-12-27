@@ -16,7 +16,9 @@ function App({ authService }) {
           exact
           render={() => <Login authService={authService} />}
         />
-        <Route path='/maker' exact component={Maker} />
+        <Route exact path='/maker'>
+          <Maker authService={authService} />
+        </Route>
       </BrowserRouter>
     </>
   );
