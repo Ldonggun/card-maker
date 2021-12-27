@@ -1,3 +1,3 @@
-import Home from './home';
+import Maker from './Maker';
 
-export { Home };
+export { Maker };

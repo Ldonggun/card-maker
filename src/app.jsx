@@ -1,22 +1,23 @@
 import React from 'react';
-import './app.css';
+import './app.module.css';
 //router
-import { BrowserRouter } from 'react-router-dom';
-import { Route } from 'react-router';
+import { BrowserRouter, Route } from 'react-router-dom';
+
 //components
-import { Modal, Header, Footer } from './components/index';
+import { Login } from './components/index';
 //pages
-import { Home } from './pages/index';
-function App() {
-  const login = false;
+import { Maker } from './pages/index';
+function App({ authService }) {
   return (
     <>
-      <Header />
-      <Modal />
       <BrowserRouter>
-        <Route path='/' exact component={Home} />
+        <Route
+          path='/'
+          exact
+          render={() => <Login authService={authService} />}
+        />
+        <Route path='/maker' exact component={Maker} />
       </BrowserRouter>
-      <Footer />
     </>
   );
 }
