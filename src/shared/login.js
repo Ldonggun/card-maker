@@ -1,6 +1,7 @@
 import { app } from './firebase';
 import {
   getAuth,
+  signOut,
   signInWithPopup,
   GoogleAuthProvider,
   GithubAuthProvider,
@@ -16,9 +17,21 @@ class AuthService {
     return signInWithPopup(auth, authProvider);
   }
 
-  logout() {}
+  logout() {
+    const auth = getAuth();
+    return signOut(auth);
+  }
 
-  onAuthChange(onUserChanged) {}
+  onAuthChange(onUserChanged) {
+    const auth = getAuth();
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        const uid = user.uid;
+      } else {
+        console.log();
+      }
+    });
+  }
 }
 
 export default AuthService;

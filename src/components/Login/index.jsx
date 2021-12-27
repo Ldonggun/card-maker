@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import style from './login.module.css';
 import { useHistory } from 'react-router-dom';
+import style from './login.module.css';
 // components
 import { Header, Footer } from '../index';
 
 const Login = ({ authService }) => {
   const history = useHistory();
+
   const goToMakerPage = userId => {
     history.push({
       pathname: '/maker',
@@ -15,26 +16,31 @@ const Login = ({ authService }) => {
   const Login = e => {
     authService //
       .login(e.currentTarget.textContent)
-      .then(data => goToMakerPage(data.user.uid));
+      .then(data => {
+        console.log('로그인성공');
+        goToMakerPage(data.user.uid);
+      });
   };
 
   useEffect(() => {
-    authService.onAuthChange(user => {
-      user && goToMakerPage(user.uid);
-    });
+    // authService.onAuthChange();
+    // authService.onAuthChange(user => {
+    //   user && goToMakerPage(user.uid);
+    // });
+    return;
   });
 
   return (
     <>
       <div className={style.outer}>
         <div className={style.container}>
-          <Header></Header>
+          <Header />
           <div className={style.contents}>
             <h1>Login</h1>
             <button onClick={Login}>Google</button>
             <button onClick={Login}>GitHub</button>
           </div>
-          <Footer></Footer>
+          <Footer />
         </div>
       </div>
     </>

@@ -5,8 +5,17 @@ import { Header, Footer } from '../../components/index';
 import { useHistory } from 'react-router-dom';
 const Maker = ({ authService }) => {
   const history = useHistory();
+  const user = history.location.state.id;
   const onLogout = () => {
-    authService.logout();
+    authService
+      .logout() //
+      .then(() => {
+        console.log('로그아웃');
+        history.push('/');
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -19,7 +28,7 @@ const Maker = ({ authService }) => {
 
   return (
     <section className={style.Maker}>
-      <Header onLogout={onLogout} />
+      <Header onLogout={onLogout} user={user} />
       <Footer />
     </section>
   );

@@ -1,8 +1,9 @@
 import React from 'react';
 import style from './header.module.css';
 import logo from '../../assets/logo.png';
-const Header = ({ onLogout }) => {
-  const isLogin = true;
+const Header = ({ onLogout, user }) => {
+  const isLogin = user;
+
   return (
     <div className={style.header}>
       {isLogin && (

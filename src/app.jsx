@@ -1,7 +1,7 @@
 import React from 'react';
 import './app.module.css';
 //router
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 //components
 import { Login } from './components/index';
@@ -11,14 +11,16 @@ function App({ authService }) {
   return (
     <>
       <BrowserRouter>
-        <Route
-          path='/'
-          exact
-          render={() => <Login authService={authService} />}
-        />
-        <Route exact path='/maker'>
-          <Maker authService={authService} />
-        </Route>
+        <Switch>
+          <Route
+            path='/'
+            exact
+            render={() => <Login authService={authService} />}
+          />
+          <Route exact path='/maker'>
+            <Maker authService={authService} />
+          </Route>
+        </Switch>
       </BrowserRouter>
     </>
   );
