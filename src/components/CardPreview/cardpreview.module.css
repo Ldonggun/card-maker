@@ -1,0 +1,10 @@
+.cardPreview {
+  width: 50%;
+  height: 100vh;
+  border-left: 3px solid #f1f1f1;
+}
+
+.title {
+  font-size: 36px;
+  text-align: center;
+}
