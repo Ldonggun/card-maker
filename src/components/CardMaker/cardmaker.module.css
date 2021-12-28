@@ -1,12 +1,17 @@
 .cardMaker {
   flex-basis: 50%;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .title {
   font-size: 36px;
   text-align: center;
 }
+
+.formContainer {
+  padding: 0.5em 2em;
+}
+
 @media screen and (max-width: 1280px) {
   .cardMaker {
     width: 100%;

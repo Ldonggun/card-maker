@@ -5,4 +5,16 @@ import CardMaker from './CardMaker';
 import CardPreview from './CardPreview';
 import Cards from './Cards';
 import CardEditForm from './CardEditForm';
-export { Login, Header, Footer, CardMaker, CardPreview, Cards, CardEditForm };
+import Button from './Button';
+import ImageFileInput from './ImageFileInput';
+export {
+  Login,
+  Header,
+  Footer,
+  CardMaker,
+  CardPreview,
+  Cards,
+  CardEditForm,
+  Button,
+  ImageFileInput,
+};
