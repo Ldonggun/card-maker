@@ -9,8 +9,15 @@
   text-align: center;
 }
 
+.cards {
+  padding: 0.5em 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media screen and (max-width: 1280px) {
   .cardPreview {
-    width: 100%;
+    width: auto;
   }
 }

@@ -3,8 +3,9 @@
   height: 45px;
   background-color: #334a58;
 
-  position: absolute;
+  /* position: absolute; */
   bottom: 0px;
+  left: 0px;
 }
 
 .text {
