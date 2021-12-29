@@ -1,8 +1,8 @@
 import React from 'react';
 import style from './cardmaker.module.css';
 //components
-import { CardEditForm } from '../index';
-const CardMaker = ({ cards }) => {
+import { CardEditForm, CardAdd } from '../index';
+const CardMaker = ({ cards, onAdd }) => {
   return (
     <section className={style.cardMaker}>
       <h1 className={style.title}>Card Maker</h1>
@@ -10,6 +10,7 @@ const CardMaker = ({ cards }) => {
         {cards.map(card => {
           return <CardEditForm card={card} key={card.id} />;
         })}
+        <CardAdd onAdd={onAdd} />
       </div>
     </section>
   );

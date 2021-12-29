@@ -4,7 +4,7 @@ import style from './maker.module.css';
 import { Header, Footer, CardMaker, CardPreview } from '../../components/index';
 import { useHistory } from 'react-router-dom';
 const Maker = ({ authService }) => {
-  const [cards, setCarrds] = useState([
+  const [cards, setCards] = useState([
     {
       id: '1',
       name: 'donggun',
@@ -39,6 +39,11 @@ const Maker = ({ authService }) => {
       fileURL: 'donggun.png',
     },
   ]);
+
+  const onAdd = card => {
+    const newData = [...cards, card];
+    setCards(newData);
+  };
   const history = useHistory();
   const user = history.location.state.id;
   const onLogout = () => {
@@ -65,7 +70,7 @@ const Maker = ({ authService }) => {
     <section className={style.Maker}>
       <Header onLogout={onLogout} user={user} />
       <section className={style.contents}>
-        <CardMaker cards={cards} />
+        <CardMaker cards={cards} onAdd={onAdd} />
         <CardPreview cards={cards} />
       </section>
       <Footer />

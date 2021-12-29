@@ -7,6 +7,7 @@ import Cards from './Cards';
 import CardEditForm from './CardEditForm';
 import Button from './Button';
 import ImageFileInput from './ImageFileInput';
+import CardAdd from './CardAdd';
 export {
   Login,
   Header,
@@ -17,4 +18,5 @@ export {
   CardEditForm,
   Button,
   ImageFileInput,
+  CardAdd,
 };
