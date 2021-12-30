@@ -39,7 +39,16 @@ const Maker = ({ authService }) => {
       fileURL: 'donggun.png',
     },
   ]);
-
+  // console.log(cards);
+  const onUpdate = data => {
+    const updateData = cards.map(item => {
+      if (item.id === data.id) {
+        return { ...item, ...data };
+      }
+      return item;
+    });
+    setCards([...updateData]);
+  };
   const onAdd = card => {
     const newData = [...cards, card];
     setCards(newData);
@@ -70,7 +79,7 @@ const Maker = ({ authService }) => {
     <section className={style.Maker}>
       <Header onLogout={onLogout} user={user} />
       <section className={style.contents}>
-        <CardMaker cards={cards} onAdd={onAdd} />
+        <CardMaker cards={cards} onAdd={onAdd} onUpdate={onUpdate} />
         <CardPreview cards={cards} />
       </section>
       <Footer />
