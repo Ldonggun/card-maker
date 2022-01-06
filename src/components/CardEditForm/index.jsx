@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import style from './cardeditform.module.css';
 //components
 import { Button, ImageFileInput } from '../index';
-const CardEditForm = ({ card, onUpdate }) => {
+const CardEditForm = ({ card, onUpdate, onDelete }) => {
   const nameRef = useRef();
   const companyRef = useRef();
   const themeRef = useRef();
@@ -20,7 +20,10 @@ const CardEditForm = ({ card, onUpdate }) => {
       [e.currentTarget.name]: e.currentTarget.value,
     });
   };
-  const onSubmit = () => {};
+  const onSubmit = e => {
+    e.preventDefault();
+    onDelete(card);
+  };
   return (
     <form className={style.form}>
       <input

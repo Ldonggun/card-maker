@@ -4,8 +4,8 @@ import style from './maker.module.css';
 import { Header, Footer, CardMaker, CardPreview } from '../../components/index';
 import { useHistory } from 'react-router-dom';
 const Maker = ({ authService }) => {
-  const [cards, setCards] = useState([
-    {
+  const [cards, setCards] = useState({
+    1: {
       id: '1',
       name: 'donggun',
       company: 'Samsung',
@@ -16,7 +16,7 @@ const Maker = ({ authService }) => {
       fileName: 'donggun',
       fileURL: null,
     },
-    {
+    2: {
       id: '2',
       name: 'donggun2',
       company: 'LG',
@@ -27,7 +27,7 @@ const Maker = ({ authService }) => {
       fileName: 'donggun',
       fileURL: null,
     },
-    {
+    3: {
       id: '3',
       name: 'donggun3',
       company: 'hyunDi',
@@ -38,23 +38,33 @@ const Maker = ({ authService }) => {
       fileName: 'donggun',
       fileURL: 'donggun.png',
     },
-  ]);
-  // console.log(cards);
-  const onUpdate = data => {
-    const updateData = cards.map(item => {
-      if (item.id === data.id) {
-        return { ...item, ...data };
-      }
-      return item;
+  });
+
+  const createOrUpdate = data => {
+    // const updateData = cards.map(item => {
+    //   if (item.id === data.id) {
+    //     return { ...item, ...data };
+    //   }
+    //   return item;
+    // });
+    // setCards([...updateData]);
+
+    setCards(cards => {
+      const updateData = { ...cards };
+      updateData[data.id] = data;
+      return updateData;
     });
-    setCards([...updateData]);
   };
-  const onAdd = card => {
-    const newData = [...cards, card];
-    setCards(newData);
+  const deleteCard = card => {
+    setCards(cards => {
+      const updateData = { ...cards };
+      delete updateData[card.id];
+      return updateData;
+    });
   };
+
   const history = useHistory();
-  const user = history.location.state.id;
+  const user = history.location.state?.id;
   const onLogout = () => {
     authService
       .logout() //
@@ -79,7 +89,12 @@ const Maker = ({ authService }) => {
     <section className={style.Maker}>
       <Header onLogout={onLogout} user={user} />
       <section className={style.contents}>
-        <CardMaker cards={cards} onAdd={onAdd} onUpdate={onUpdate} />
+        <CardMaker
+          cards={cards}
+          onAdd={createOrUpdate}
+          onUpdate={createOrUpdate}
+          onDelete={deleteCard}
+        />
         <CardPreview cards={cards} />
       </section>
       <Footer />
