@@ -1,14 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import style from './cardadd.module.css';
 //components
-import { ImageFileInput, Button } from '../index';
-const CardAdd = ({ onAdd }) => {
+import { Button } from '../index';
+const CardAdd = ({ FileInput, onAdd }) => {
   const nameRef = useRef();
   const companyRef = useRef();
   const themeRef = useRef();
   const titleRef = useRef();
   const emailRef = useRef();
   const messageRef = useRef();
+  const [file, setFile] = useState({ fileNmae: null, fileURL: null });
+
+  const onFileChange = file => {
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
 
   const onSubmit = e => {
     e.preventDefault();
@@ -20,9 +28,10 @@ const CardAdd = ({ onAdd }) => {
       title: titleRef.current.value || '',
       email: emailRef.current.value || '',
       message: messageRef.current.value || '',
-      fileName: '',
-      fileURL: '',
+      fileName: file.fileName || '',
+      fileURL: file.fileURL || '',
     };
+    setFile({ fileNmae: null, fileURL: null });
     onAdd(card);
   };
 
@@ -73,7 +82,7 @@ const CardAdd = ({ onAdd }) => {
         ref={messageRef}
       />
       <div className={style.fileInput}>
-        <ImageFileInput />
+        <FileInput name={file.fileName} onFileChange={onFileChange} />
       </div>
       <Button name='ADD' onClick={onSubmit} />
     </form>

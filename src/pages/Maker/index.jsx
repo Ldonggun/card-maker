@@ -3,7 +3,7 @@ import style from './maker.module.css';
 //components
 import { Header, Footer, CardMaker, CardPreview } from '../../components/index';
 import { useHistory } from 'react-router-dom';
-const Maker = ({ authService }) => {
+const Maker = ({ FileInput, authService }) => {
   const [cards, setCards] = useState({
     1: {
       id: '1',
@@ -90,6 +90,7 @@ const Maker = ({ authService }) => {
       <Header onLogout={onLogout} user={user} />
       <section className={style.contents}>
         <CardMaker
+          FileInput={FileInput}
           cards={cards}
           onAdd={createOrUpdate}
           onUpdate={createOrUpdate}
