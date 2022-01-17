@@ -3,57 +3,20 @@ import style from './maker.module.css';
 //components
 import { Header, Footer, CardMaker, CardPreview } from '../../components/index';
 import { useHistory } from 'react-router-dom';
-const Maker = ({ FileInput, authService }) => {
-  const [cards, setCards] = useState({
-    1: {
-      id: '1',
-      name: 'donggun',
-      company: 'Samsung',
-      theme: 'dark',
-      title: 'Sortware Engineer',
-      email: 'ehdrjs130@gmail.com',
-      message: 'go for it',
-      fileName: 'donggun',
-      fileURL: null,
-    },
-    2: {
-      id: '2',
-      name: 'donggun2',
-      company: 'LG',
-      theme: 'light',
-      title: 'back Engineer',
-      email: 'ehdrjs@gmail.com',
-      message: 'go for it',
-      fileName: 'donggun',
-      fileURL: null,
-    },
-    3: {
-      id: '3',
-      name: 'donggun3',
-      company: 'hyunDi',
-      theme: 'colorful',
-      title: 'front Engineer',
-      email: 'ehdrjs15503@gmail.com',
-      message: 'GG',
-      fileName: 'donggun',
-      fileURL: 'donggun.png',
-    },
-  });
+
+const Maker = ({ FileInput, authService, dataBase }) => {
+  const [cards, setCards] = useState({});
+  const history = useHistory();
+  const user = history.location.state?.id;
+  const [userId, setUserId] = useState(user && user);
 
   const createOrUpdate = data => {
-    // const updateData = cards.map(item => {
-    //   if (item.id === data.id) {
-    //     return { ...item, ...data };
-    //   }
-    //   return item;
-    // });
-    // setCards([...updateData]);
-
     setCards(cards => {
       const updateData = { ...cards };
       updateData[data.id] = data;
       return updateData;
     });
+    dataBase.setData(userId, data);
   };
   const deleteCard = card => {
     setCards(cards => {
@@ -61,10 +24,9 @@ const Maker = ({ FileInput, authService }) => {
       delete updateData[card.id];
       return updateData;
     });
+    dataBase.deleteData(userId, card);
   };
 
-  const history = useHistory();
-  const user = history.location.state?.id;
   const onLogout = () => {
     authService
       .logout() //
@@ -78,11 +40,13 @@ const Maker = ({ FileInput, authService }) => {
   };
 
   useEffect(() => {
-    authService.onAuthChange(user => {
-      if (!user) {
-        history.push('/');
-      }
-    });
+    console.log(2);
+    authService.onAuthChange(user);
+    if (user) {
+      setUserId(user);
+    } else {
+      history.push('/');
+    }
   });
 
   return (
