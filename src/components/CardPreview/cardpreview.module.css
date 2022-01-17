@@ -1,6 +1,7 @@
 .cardPreview {
   flex-basis: 50%;
   border-left: 3px solid #f1f1f1;
+  overflow-y: auto;
 }
 
 .title {
