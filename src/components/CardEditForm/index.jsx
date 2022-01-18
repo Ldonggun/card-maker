@@ -40,6 +40,7 @@ const CardEditForm = ({ FileInput, card, onUpdate, onDelete }) => {
         name='name'
         value={name}
         onChange={onChange}
+        ref={nameRef}
       />
       <input
         className={style.input}

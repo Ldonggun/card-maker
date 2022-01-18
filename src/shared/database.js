@@ -1,14 +1,25 @@
-import { getDatabase, ref, set, remove } from 'firebase/database';
-import { app } from './firebase';
+import { getDatabase, ref, set, remove, onValue, off } from 'firebase/database';
+
 class RealTimeDataBase {
-  setData(userId, data) {
+  setData(userId, card) {
     const db = getDatabase();
-    set(ref(db, `${userId}/cards${data.id}}`), { data });
+    set(ref(db, `${userId}/cards/${card.id}}`), card);
   }
 
-  deleteData(userId, data) {
+  deleteData(userId, card) {
     const db = getDatabase();
-    remove(ref(db, `${userId}/cards${data.id}}`), { data });
+    remove(ref(db, `${userId}/cards/${card.id}}`), card);
+  }
+
+  getDatafromDB(userId, onUpdate) {
+    const db = getDatabase();
+    const Ref = ref(db, `${userId}/cards/`);
+    onValue(Ref, snapshot => {
+      const data = snapshot.val();
+      if (data) onUpdate(data);
+      if (data === null) onUpdate('');
+    });
+    return () => off(Ref);
   }
 }
 

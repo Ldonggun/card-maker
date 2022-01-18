@@ -9,7 +9,6 @@ const Maker = ({ FileInput, authService, dataBase }) => {
   const history = useHistory();
   const user = history.location.state?.id;
   const [userId, setUserId] = useState(user && user);
-
   const createOrUpdate = data => {
     setCards(cards => {
       const updateData = { ...cards };
@@ -40,7 +39,6 @@ const Maker = ({ FileInput, authService, dataBase }) => {
   };
 
   useEffect(() => {
-    console.log(2);
     authService.onAuthChange(user);
     if (user) {
       setUserId(user);
@@ -48,6 +46,16 @@ const Maker = ({ FileInput, authService, dataBase }) => {
       history.push('/');
     }
   });
+
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    const getData = dataBase.getDatafromDB(userId, cards => {
+      setCards(cards);
+    });
+    return () => getData();
+  }, [userId]);
 
   return (
     <section className={style.Maker}>

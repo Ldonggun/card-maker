@@ -9,6 +9,7 @@ const CardAdd = ({ FileInput, onAdd }) => {
   const titleRef = useRef();
   const emailRef = useRef();
   const messageRef = useRef();
+  const formRef = useRef();
   const [file, setFile] = useState({ fileNmae: null, fileURL: null });
 
   const onFileChange = file => {
@@ -21,7 +22,7 @@ const CardAdd = ({ FileInput, onAdd }) => {
   const onSubmit = e => {
     e.preventDefault();
     const card = {
-      id: new Date(), // uid
+      id: Date.now(),
       name: nameRef.current.value || '',
       company: companyRef.current.value || '',
       theme: themeRef.current.value,
@@ -33,10 +34,16 @@ const CardAdd = ({ FileInput, onAdd }) => {
     };
     setFile({ fileNmae: null, fileURL: null });
     onAdd(card);
+    nameRef.current.value = '';
+    companyRef.current.value = '';
+    nameRef.current.value = '';
+    titleRef.current.value = '';
+    messageRef.current.value = '';
+    emailRef.current.value = '';
   };
 
   return (
-    <form className={style.form}>
+    <form className={style.form} ref={formRef}>
       <input
         className={style.input}
         type='text'
