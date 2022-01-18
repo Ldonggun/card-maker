@@ -9,8 +9,7 @@ const CardEditForm = ({ FileInput, card, onUpdate, onDelete }) => {
   const titleRef = useRef();
   const emailRef = useRef();
   const messageRef = useRef();
-  const { name, company, title, message, theme, fileName, fileURL, email } =
-    card;
+  const { name, company, title, message, theme, fileName, email } = card;
 
   const onFileChange = file => {
     onUpdate({

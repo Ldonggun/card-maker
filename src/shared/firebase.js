@@ -8,6 +8,5 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const apiKey = firebaseConfig.apiKey;
 
-export { app, apiKey };
+export { app };

@@ -30,7 +30,6 @@ const Maker = ({ FileInput, authService, dataBase }) => {
     authService
       .logout() //
       .then(() => {
-        console.log('로그아웃');
         history.push('/');
       })
       .catch(error => {
@@ -45,7 +44,7 @@ const Maker = ({ FileInput, authService, dataBase }) => {
     } else {
       history.push('/');
     }
-  });
+  }, [authService, history, user]);
 
   useEffect(() => {
     if (!userId) {
@@ -55,7 +54,7 @@ const Maker = ({ FileInput, authService, dataBase }) => {
       setCards(cards);
     });
     return () => getData();
-  }, [userId]);
+  }, [userId, dataBase]);
 
   return (
     <section className={style.Maker}>

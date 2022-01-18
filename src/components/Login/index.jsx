@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import style from './login.module.css';
 // components
@@ -17,7 +17,6 @@ const Login = ({ authService }) => {
     authService //
       .login(e.currentTarget.textContent)
       .then(data => {
-        console.log('로그인성공');
         goToMakerPage(data.user.uid);
       });
   };

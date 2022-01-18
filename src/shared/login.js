@@ -27,6 +27,7 @@ class AuthService {
     onAuthStateChanged(auth, user => {
       if (user) {
         const uid = user.uid;
+        return uid;
       } else {
         console.log();
       }
