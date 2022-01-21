@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import style from './header.module.css';
 import logo from '../../assets/logo.png';
-const Header = ({ onLogout, user }) => {
+const Header = memo(({ onLogout, user }) => {
   const isLogin = user;
-
   return (
     <div className={style.header}>
       {isLogin && (
@@ -15,6 +14,6 @@ const Header = ({ onLogout, user }) => {
       <p className={style.title}>Business Card Maker</p>
     </div>
   );
-};
+});
 
 export default Header;

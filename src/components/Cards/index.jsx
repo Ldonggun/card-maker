@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import style from './cards.module.css';
 import DEFAULT_IMAGE from '../../assets/default_logo.png';
-const Cards = ({ card }) => {
+const Cards = memo(({ card }) => {
   const { name, company, title, email, message, theme, fileURL } = card;
   const url = fileURL || DEFAULT_IMAGE;
 
@@ -17,7 +17,7 @@ const Cards = ({ card }) => {
       </div>
     </li>
   );
-};
+});
 
 function getStyles(theme) {
   // eslint-disable-next-line default-case

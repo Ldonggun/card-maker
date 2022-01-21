@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import style from './maker.module.css';
 //components
 import { Header, Footer, CardMaker, CardPreview } from '../../components/index';
@@ -26,7 +26,7 @@ const Maker = ({ FileInput, authService, dataBase }) => {
     dataBase.deleteData(userId, card);
   };
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     authService
       .logout() //
       .then(() => {
@@ -35,7 +35,7 @@ const Maker = ({ FileInput, authService, dataBase }) => {
       .catch(error => {
         console.log(error);
       });
-  };
+  }, [authService, history]);
 
   useEffect(() => {
     authService.onAuthChange(user);
